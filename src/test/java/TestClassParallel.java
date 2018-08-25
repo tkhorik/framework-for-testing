@@ -13,13 +13,13 @@ public class TestClassParallel {
         JUnitCore.runClasses(ParallelComputer.classes(), cls);
 
         System.out.println("----------------------------");
-
+/*
         // Parallel among methods in a class
         JUnitCore.runClasses(ParallelComputer.methods(), cls);
 
-        System.out.println("----------------------------");
+        System.out.println("----------------------------");*/
 
         // Parallel all methods in all classes
-        JUnitCore.runClasses(new ParallelComputer(true, false), cls);
+//        JUnitCore.runClasses(new ParallelComputer(true, true), cls);
     }
 }
