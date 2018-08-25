@@ -98,6 +98,16 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>ru.yandex.qatools.htmlelements</groupId>
+            <artifactId>htmlelements-java</artifactId>
+            <version>1.18</version> <!-- 1.18+ is SELENIUM 3.5.1+ compatible -->
+        </dependency>
+        <dependency>
+            <groupId>ru.yandex.qatools.htmlelements</groupId>
+            <artifactId>htmlelements-all</artifactId>
+            <version>1.18</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -111,6 +121,16 @@
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>io.qameta.allure</groupId>
+                <artifactId>allure-maven</artifactId>
+                <version>2.9</version>
+                <configuration>
+                    <resultsDirectory>allure-results</resultsDirectory>
+                    <reportVersion>2.4.1</reportVersion>
+                    <propertiesFilePath>src/main/resources/allure.properties</propertiesFilePath>
                 </configuration>
             </plugin>
             <plugin>

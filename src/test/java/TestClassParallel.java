@@ -7,10 +7,10 @@ public class TestClassParallel {
 
     @Test
     public void test() {
-        Class[] cls = {ChromeTest.class, ChromeTest2.class};
+        Class[] cls = {ChromeTest.class};
 
         // Parallel among classes
-        JUnitCore.runClasses(ParallelComputer.classes(), cls);
+//        JUnitCore.runClasses(ParallelComputer.classes(), cls);
 
         System.out.println("----------------------------");
 
@@ -20,6 +20,6 @@ public class TestClassParallel {
         System.out.println("----------------------------");
 
         // Parallel all methods in all classes
-        JUnitCore.runClasses(new ParallelComputer(true, false), cls);
+//        JUnitCore.runClasses(new ParallelComputer(true, false), cls);
     }
 }
