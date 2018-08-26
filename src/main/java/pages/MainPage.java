@@ -11,7 +11,7 @@ public class MainPage extends AbstractPage {
     @FindBy(id = "searchInput")
     public Button requestInput;
 
-    @Name("payments-menu")
+    @Name("footer-menu")
     @FindBy(xpath = ".//*[@data-qa-file='Footer']//*[text() ='Платежи']")
     public Button paymentsButton;
 
