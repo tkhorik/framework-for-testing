@@ -5,6 +5,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.MainPage;
 
@@ -25,8 +26,10 @@ public class ChromeTest {
 
     @Before
     public void setupTest() {
-        driver = new ChromeDriver();
-        driver.get("https://en.wikipedia.org/wiki/Main_Page");
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--disable-notifications");
+        driver = new ChromeDriver(options);
+        driver.get("https://www.tinkoff.ru");
         driver.manage().window().maximize();
     }
 
@@ -41,11 +44,8 @@ public class ChromeTest {
     @Test
     public void sampleTest() {
         MainPage mp = new MainPage(driver);
-        mp.requestInput.getText();
-        mp.search("yandex");
-        mp.searchButton.click();
-        WebDriverWait wait = new WebDriverWait(driver, 30);
-        wait.until(visibilityOf(mp.searchButton));
-        // Some assertion here
+        mp.paymentsButton.click();
+        WebDriverWait wait = new WebDriverWait(driver, 5);
+        wait.until(visibilityOf(mp.requestInput));
     }
 }

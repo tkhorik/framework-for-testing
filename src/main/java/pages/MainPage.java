@@ -11,14 +11,9 @@ public class MainPage extends AbstractPage {
     @FindBy(id = "searchInput")
     public Button requestInput;
 
-    @Name("Search button")
-    @FindBy(id = "searchButton")
-    public Button searchButton;
-
-    public void search(String request) {
-        requestInput.sendKeys(request);
-        searchButton.click();
-    }
+    @Name("payments-menu")
+    @FindBy(xpath = ".//*[@data-qa-file='Footer']//*[text() ='Платежи']")
+    public Button paymentsButton;
 
     public MainPage(WebDriver driver) {
         super(driver);
