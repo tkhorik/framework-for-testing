@@ -1,4 +1,3 @@
-import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -21,7 +20,11 @@ public class ChromeTest {
 
     @BeforeClass
     public static void setupClass() {
-        WebDriverManager.chromedriver().setup();
+        //WebDriverManager.chromedriver().setup(); //-for automatic driver download
+        String projectPath = System.getProperty("user.dir");
+        System.out.println("projectPath : " + projectPath);
+        System.setProperty("webdriver.chrome.driver", projectPath + "\\drivers\\chromedriver.exe");
+//        WebDriver driver = new ChromeDriver();
     }
 
     @Before
@@ -43,6 +46,13 @@ public class ChromeTest {
 
     @Test
     public void sampleTest() {
+        MainPage mp = new MainPage(driver);
+        mp.paymentsButton.click();
+        WebDriverWait wait = new WebDriverWait(driver, 5);
+        wait.until(visibilityOf(mp.requestInput));
+    }
+    @Test
+    public void sampleTest2() {
         MainPage mp = new MainPage(driver);
         mp.paymentsButton.click();
         WebDriverWait wait = new WebDriverWait(driver, 5);
