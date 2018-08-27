@@ -1,7 +1,6 @@
 package pages;
 
 import org.junit.Assert;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 import ru.yandex.qatools.htmlelements.element.Button;
 import ru.yandex.qatools.htmlelements.element.HtmlElement;
@@ -43,10 +42,6 @@ public class KommunalniePlatezhiPage extends AbstractPage {
     @FindBy(xpath = "(//*[@data-qa-file=\"UILayoutSection\"]//a)[1]")
     public Button firstElementUILayoutSection;
 
-
-    public KommunalniePlatezhiPage(WebDriver driver) {
-        super(driver);
-    }
 
     public void veryfythatregionisCorrect(String name) {
         if (paymentsCatalogHeader.getText().contains(name)) {

@@ -2,13 +2,10 @@ package pages;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import ru.yandex.qatools.htmlelements.annotations.Name;
 import ru.yandex.qatools.htmlelements.element.Button;
 import ru.yandex.qatools.htmlelements.element.TextInput;
-import ru.yandex.qatools.htmlelements.loader.decorator.HtmlElementDecorator;
-import ru.yandex.qatools.htmlelements.loader.decorator.HtmlElementLocatorFactory;
 
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
 
@@ -29,13 +26,9 @@ public class PaymentsPage {
     public TextInput firstSearchSuggestedelEment;
 
 
-    public PaymentsPage clickOnKommunalniePlatezhi() {
+    public ZhkuMoskvaPage clickOnKommunalniePlatezhi() {
         JKHbutton.click();
-        return this;
-    }
-
-    public PaymentsPage(WebDriver driver) {
-        PageFactory.initElements(new HtmlElementDecorator(new HtmlElementLocatorFactory(driver)), this);
+        return new ZhkuMoskvaPage();
     }
 
     public void InsertSavedValueInSearchInput(WebDriver driver) {

@@ -1,18 +1,10 @@
+import core.WebDriverSingleton;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.After;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import pages.KommunalniePlatezhiPage;
 import pages.MainPage;
 import pages.PaymentsPage;
-import pages.ZhkuMoskvaPage;
-
-import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
 
 /*
 https://www.swtestacademy.com/allure-testng/ allure implementation
@@ -20,39 +12,37 @@ https://www.swtestacademy.com/allure-testng/ allure implementation
 
 public class ChromeTest {
 
-    private WebDriver driver;
-
     @BeforeClass
     public static void setupClass() {
         WebDriverManager.chromedriver().setup();
     }
 
-    @Before
+/*    @Before
     public void setupTest() {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--disable-notifications");
         driver = new ChromeDriver(options);
         driver.get("https://www.tinkoff.ru");
         driver.manage().window().maximize();
-    }
+    }*/
 
     @After
     public void teardown() {
-        if (driver != null) {
-            driver.quit();
-        }
+        WebDriverSingleton.getInstance().quit();
     }
 
     @Test
     public void sampleTest() {
 
-        WebDriverWait wait = new WebDriverWait(driver, 5);
+//        WebDriverWait wait = new WebDriverWait(driver, 5);
 // открыть https://www.tinkoff.ru/
-        MainPage mp = new MainPage(driver);
+        MainPage mp = new MainPage();
 // нажать платежи															 - переход на страницу https://www.tinkoff.ru/payments/
         mp.paymentsButton.click();
-// на странице payments нажать ЖКХ                                         - переход на страницу https://www.tinkoff.ru/payments/categories/kommunalnie-platezhi/
-        PaymentsPage pp = new PaymentsPage(driver);
+        PaymentsPage pp = new PaymentsPage();
+        pp.clickOnKommunalniePlatezhi().;
+        // на странице payments нажать ЖКХ                                         - переход на страницу https://www.tinkoff.ru/payments/categories/kommunalnie-platezhi/
+/*        PaymentsPage pp = new PaymentsPage(driver);
         pp.JKHbutton.click();
         KommunalniePlatezhiPage kp = new KommunalniePlatezhiPage(driver);
         kp.veryfythatregionisCorrect("Москв");
@@ -97,5 +87,6 @@ public class ChromeTest {
 // выбрать Сант петербург													- переход на страницу https://www.tinkoff.ru/payments/categories/kommunalnie-platezhi/
 // * проверяем что открылась страница Питера
 // * 14.	Убедится, что в списке поставщиков на странице выбора поставщиков услуг отсутствует искомый.
+    }*/
     }
 }
