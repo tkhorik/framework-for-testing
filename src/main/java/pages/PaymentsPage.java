@@ -1,15 +1,17 @@
 package pages;
 
-import core.WebDriverSingleton2;
+import core.WebDriverSingleton;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import ru.yandex.qatools.htmlelements.element.Button;
-import ru.yandex.qatools.htmlelements.element.TextInput;
+import ru.yandex.qatools.htmlelements.element.HtmlElement;
 
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
 
 public class PaymentsPage extends AbstractPage {
+    WebDriverWait wait = new WebDriverWait(WebDriverSingleton.getDriver(), 5);
 
     @FindBy(xpath = "//DIV[@data-qa-file='IconWithText'][text()='ЖКХ']")
     public Button jkhButton;
@@ -17,11 +19,8 @@ public class PaymentsPage extends AbstractPage {
     @FindBy(xpath = "//*[@data-qa-file='Search']")
     public Button searchButton;
 
-    @FindBy(xpath = "//input[@placeholder='Название или ИНН получателя платежа']")
-    public TextInput searchInput;
-
-    @FindBy(xpath = "(//*[@data-qa-file='SearchSuggested']//*[@data-qa-node='Tag'])[1]")
-    public TextInput firstSearchSuggestedelEment;
+    @FindBy(xpath = "(//*[@data-qa-file='GridColumn'])")
+    public HtmlElement SearchSuggest__blockContent_2s0YS;
 
     public PaymentsPage selecRegion(String region) {
         return new PaymentsPage();
@@ -31,25 +30,19 @@ public class PaymentsPage extends AbstractPage {
         Assert.assertEquals("заголовки страниц не соответсвуют", searchButton.getLocation(), title);
     }
 
-//    public void verifyThatelementEbsent (SavedElement element){
-//        Assert.assertTrue("проверяем элеме нт пристусвуте на странице",searchInput.isDisplayed(),false);
-//    }
-
     public void setSearchField(String str) {
         searchInput.sendKeys(str);
     }
 
-    public void insertSavedValueInSearchInput() {
-        String string = ZhkuMoskvaPage.getSAVEDVALUE();
-        WebDriverWait wait = new WebDriverWait(WebDriverSingleton2.getDriver(), 5);
-        wait.until(visibilityOf(searchInput));
-        searchInput.click();
-        searchInput.sendKeys(string);
-        firstSearchSuggestedelEment.click();
+    public KommunalniePlatezhiPage clickOnKommunalniePlatezhi() {
+        jkhButton.click();
+        return new KommunalniePlatezhiPage();
     }
 
-    public ZhkuMoskvaPage clickOnKommunalniePlatezhi() {
-        jkhButton.click();
-        return new ZhkuMoskvaPage();
+    public void clickOnSegestionLIstByInedex(int index) {
+        wait.until(visibilityOf(SearchSuggest__blockContent_2s0YS));
+        WebDriverSingleton.getDriver()
+                .findElement(By.xpath("(//*[@data-qa-file='GridColumn'])" + "[" + index + "]" + ""))
+                .click();
     }
 }

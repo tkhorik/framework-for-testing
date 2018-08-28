@@ -27,7 +27,7 @@ public class WebDriverSingleton {
             driver = new ChromeDriver(options);
             setDriver(driver);
             driver.manage().window().maximize();
-            driver.get("https://www.tinkoff.ru");
+//            driver.get("https://www.tinkoff.ru");
         }
         return driver;
     }

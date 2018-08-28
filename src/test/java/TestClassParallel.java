@@ -6,7 +6,7 @@ public class TestClassParallel {
 
     @Test
     public void test() {
-        Class[] cls = {ChromeTest.class, ChromeTest3.class};
+        Class[] cls = {ChromeTest.class, ChromeTest.class};
 
         // Parallel among classes
         JUnitCore.runClasses(ParallelComputer.classes(), cls);

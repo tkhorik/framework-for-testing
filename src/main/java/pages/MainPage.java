@@ -1,5 +1,6 @@
 package pages;
 
+import core.WebDriverSingleton;
 import org.openqa.selenium.support.FindBy;
 import ru.yandex.qatools.htmlelements.annotations.Name;
 import ru.yandex.qatools.htmlelements.element.Button;
@@ -13,6 +14,11 @@ public class MainPage extends AbstractPage {
     @Name("footer-menu")
     @FindBy(xpath = ".//*[@data-qa-file='Footer']//*[text() ='Платежи']")
     private Button paymentsButton;
+
+    public void getUrl(String url){
+        WebDriverSingleton.getDriver().get(url);
+    }
+
 
     public PaymentsPage clickOnPaymentsButton() {
         paymentsButton.click();

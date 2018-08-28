@@ -5,7 +5,7 @@ import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
-@SuiteClasses({ ChromeTest.class, ChromeTest3.class })
+@SuiteClasses({ ChromeTest.class, ChromeTest.class })
 public class TestSuiteSimple2 {
 
 }
