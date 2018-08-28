@@ -1,7 +1,7 @@
 # [Тинькофф] Тестовое задание
 
 Test created using maven + selenium webdriver + java 8 + junit + Html Elements + page objects pattern. 
-
+тесты были написаны на разрешении 1366*768
 
 ## Getting Started
 
