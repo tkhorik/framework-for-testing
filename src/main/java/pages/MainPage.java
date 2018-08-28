@@ -12,6 +12,10 @@ public class MainPage extends AbstractPage {
 
     @Name("footer-menu")
     @FindBy(xpath = ".//*[@data-qa-file='Footer']//*[text() ='Платежи']")
-    public Button paymentsButton;
+    private Button paymentsButton;
 
+    public PaymentsPage clickOnPaymentsButton() {
+        paymentsButton.click();
+        return new PaymentsPage();
+    }
 }

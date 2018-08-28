@@ -1,90 +1,46 @@
+import core.WebDriverSingleton;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.After;
-import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import pages.MainPage;
 import pages.PaymentsPage;
-import pages.ZhkuMoskvaPage;
 
 /*
 https://www.swtestacademy.com/allure-testng/ allure implementation
 * */
 
-public class ChromeTest {
+public class ChromeTest3 {
 
     @BeforeClass
     public static void setupClass() {
         WebDriverManager.chromedriver().setup();
     }
 
+/*    @Before
+    public void setupTest() {
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--disable-notifications");
+        driver = new ChromeDriver(options);
+        driver.get("https://www.tinkoff.ru");
+        driver.manage().window().maximize();
+    }*/
+
     @After
     public void teardown() {
-//            WebDriverSingleton.getInstance().quit();
+        WebDriverSingleton.getInstance().quit();
     }
 
     @Test
     public void sampleTest() {
         MainPage mp = new MainPage();
-        mp.clickOnPaymentsButton()
-                .clickOnKommunalniePlatezhi()
-                .selectRegion("Санкт-Петербург")
-                .veryfythatregionisCorrect("Москва")
-                .selectOnFirstElementAndStorItTextValue();
-
-        ZhkuMoskvaPage zhku = new ZhkuMoskvaPage();
-        zhku.payInMoscowTab.click();
-        zhku.payInMoscowTab.click();
-        zhku.pushTheButtonPayInMoscow();
-
-        Assert.assertEquals("Поле обязательное", zhku.inputPayerCodeError.getText());
-        Assert.assertEquals("Поле обязательное", zhku.inputPeriodError.getText());
-        Assert.assertEquals("Поле обязательное", zhku.inputSummaPlatejaError.getText());
-//        Assert.assertEquals("Поле заполнено некорректно", zhkuMoskvaOplata.getErrorPeriodMessage());
-//         * выполнить проверки на невалидные значения обязательных полей
-        zhku.inputPayerCode.click();
-        zhku.inputPayerCode.sendKeys("000000000");
-        zhku.inputPeriod.click();
-        zhku.inputPeriod.sendKeys("15.2018");
-        zhku.inputSummaPlateja.sendKeys("5");
-        zhku.pushTheButtonPayInMoscow();
-
-        Assert.assertEquals("Поле неправильно заполнено", zhku.inputPayerCodeError.getText());
-        Assert.assertEquals("Поле заполнено некорректно", zhku.inputPeriodError.getText());
-        Assert.assertEquals("Минимум — 10 \u20BD", zhku.inputSummaPlatejaError.getText());
-        //	- проверить текст всех ошибок
-
-        // нажать платежи
-        mp.clickOnPaymentsButton();
-        // ввести запомненное значение ЖКУ-Москва
-        PaymentsPage pp = new PaymentsPage();
-        pp.searchInput.sendKeys(zhku.getValueFromStorage());
-        zhku.clicOnFirstSegestion();
-//        pp.sendKeys(Keys.RETURN);
-        zhku.selectOnFirstElementAndStorItTextValue();
-
-        // * проверить что в выпадающем списке ЖКУ-Москва первым элементом
-//                .verifyFirsElementIs("ЖКУ-Москва")
-        // выбрать элемен с значением из сохраненной переменной ЖКУ-Москва
-//                .verifyThatOpenedPageHasTitle(savedPageTitle);
-        // * убедится что загруженная страница таже (проверить тайтлы)
-
-        // перейти опять на коммунальные платежи через кнопку меню платежи
-        // выбрать Сант петербург
-        mp.clickOnPaymentsButton()
-                .clickOnKommunalniePlatezhi()
-                .selectRegion("Санкт-Петербург");
-        // * проверяем что открылась страница Питера
-//        new MainPage().clickOnPaymentsButton() .selecRegion("Сант петербург").verifyPageTitleIs("qweqwe");
-        // * 14.	Убедится, что в списке поставщиков на странице
-//        .verifyThatelementEbsent(savedelement);
-        // выбора поставщиков услуг отсутствует искомый.
-
+        new MainPage().clickOnPaymentsButton().clickOnKommunalniePlatezhi()
+                .veryfythatregionisCorrect("Москв");
 
 // нажать платежи															 - переход на страницу https://www.tinkoff.ru/payments/
-//        PaymentsPage pp = new PaymentsPage();
-//        new PaymentsPage()
-//                .setSearchField("sdf");
+        PaymentsPage pp = new PaymentsPage();
+        new PaymentsPage()
+                .setSearchField("sdf");
         // на странице payments нажать ЖКХ                                         - переход на страницу https://www.tinkoff.ru/payments/categories/kommunalnie-platezhi/
 /*        PaymentsPage pp = new PaymentsPage(driver);
         pp.JKHbutton.click();

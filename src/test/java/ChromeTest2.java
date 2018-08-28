@@ -11,7 +11,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import static org.openqa.selenium.support.ui.ExpectedConditions.*;
 
 public class ChromeTest2 {
-
+    /*not Thread save class
+     * shoul be tested */
     private WebDriver driver;
 
     @BeforeClass
@@ -47,6 +48,7 @@ public class ChromeTest2 {
         wait.until(textToBePresentInElementLocated(By.tagName("body"),
                 "Computer software"));
     }
+
     @Test
     public void test2() {
         // Your test code here. For example:
@@ -63,6 +65,7 @@ public class ChromeTest2 {
         wait.until(textToBePresentInElementLocated(By.tagName("body"),
                 "Computer software"));
     }
+
     @Test
     public void test3() {
         // Your test code here. For example:

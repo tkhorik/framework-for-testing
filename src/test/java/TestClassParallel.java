@@ -1,4 +1,3 @@
-
 import org.junit.Test;
 import org.junit.experimental.ParallelComputer;
 import org.junit.runner.JUnitCore;
@@ -7,10 +6,10 @@ public class TestClassParallel {
 
     @Test
     public void test() {
-        Class[] cls = {ChromeTest.class};
+        Class[] cls = {ChromeTest.class, ChromeTest3.class};
 
         // Parallel among classes
-//        JUnitCore.runClasses(ParallelComputer.classes(), cls);
+        JUnitCore.runClasses(ParallelComputer.classes(), cls);
 
         System.out.println("----------------------------");
 
