@@ -31,8 +31,9 @@ public class AbstractPage extends HtmlElement {
     void clickOnButton(Button button) {
         WebDriver initialDriver = WebDriverSingleton.getDriver();
         Actions action = new Actions(initialDriver);
-        WebDriverWait wait = new WebDriverWait(initialDriver, 30);
-        action.moveToElement(wait.until(elementToBeClickable(button))).build().perform();
+        WebDriverWait wait = new WebDriverWait(initialDriver,30);
+        wait.until(elementToBeClickable(button)).click();
+//        action..moveToElement(until).build().perform();
 
     }
 

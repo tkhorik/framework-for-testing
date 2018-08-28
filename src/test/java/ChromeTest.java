@@ -52,7 +52,7 @@ public class ChromeTest {
         Assert.assertEquals("Поле неправильно заполнено", zhku.inputPayerCodeError.getText());
         Assert.assertEquals("Поле заполнено некорректно", zhku.inputPeriodError.getText());
         Assert.assertEquals("Минимум — 10 \u20BD", zhku.inputSummaPlatejaError.getText());
-        //	- проверить текст всех ошибок
+//        	- проверить текст всех ошибок
 
         // нажать платежи
         mp.clickOnPaymentsButton();
@@ -60,7 +60,6 @@ public class ChromeTest {
         PaymentsPage pp = new PaymentsPage();
         pp.searchInput.sendKeys(zhku.getValueFromStorage());
         zhku.clicOnFirstSegestion();
-//        pp.sendKeys(Keys.RETURN);
         zhku.selectOnFirstElementAndStorItTextValue();
 
         // * проверить что в выпадающем списке ЖКУ-Москва первым элементом
