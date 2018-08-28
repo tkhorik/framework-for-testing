@@ -27,7 +27,7 @@ public class ChromeTest {
         mp.getUrl("https://www.tinkoff.ru");
         mp.clickOnPaymentsButton()
                 .clickOnKommunalniePlatezhi()
-                .selectRegion("Санкт-Петербург")
+                .selectRegion("Санкт-Петербург") //реализовано для демострации работоспособности условия переключения на московскии регион
                 .veryfythatregionisCorrect("Москва")
                 .selectOnFirstElementAndStorItTextValue();
 
