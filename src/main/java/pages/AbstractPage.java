@@ -36,12 +36,11 @@ public class AbstractPage extends HtmlElement {
 
     void clickOnButton(Button button) {
         WebDriver initialDriver = WebDriverSingleton.getDriver();
-        Actions action = new Actions(initialDriver);
         WebDriverWait wait = new WebDriverWait(initialDriver,30);
         wait.until(elementToBeClickable(button)).click();
     }
 
-    public AbstractPage() {
+    AbstractPage() {
         PageFactory.initElements(new HtmlElementDecorator(new HtmlElementLocatorFactory(WebDriverSingleton.getInstance())), this);
     }
 }

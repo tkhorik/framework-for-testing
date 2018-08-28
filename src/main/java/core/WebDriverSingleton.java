@@ -6,16 +6,15 @@ import org.openqa.selenium.chrome.ChromeOptions;
 
 public class WebDriverSingleton {
 
+    private WebDriverSingleton() {
+    }
+
     public static WebDriver getDriver() {
         return driver;
     }
 
-    public static void setDriver(WebDriver driver) {
+    private static void setDriver(WebDriver driver) {
         WebDriverSingleton.driver = driver;
-    }
-
-    public WebDriverSingleton() {
-
     }
 
     private static WebDriver driver;
@@ -23,11 +22,10 @@ public class WebDriverSingleton {
     public static WebDriver getInstance() {
         if (driver == null) {
             ChromeOptions options = new ChromeOptions();
-            final ChromeOptions chromeOptions = options.addArguments("--disable-notifications");
-            driver = new ChromeDriver(options);
+            ChromeOptions chromeOptions = options.addArguments("--disable-notifications");
+            driver = new ChromeDriver(chromeOptions);
             setDriver(driver);
             driver.manage().window().maximize();
-//            driver.get("https://www.tinkoff.ru");
         }
         return driver;
     }
