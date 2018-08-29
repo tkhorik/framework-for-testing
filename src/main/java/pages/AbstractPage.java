@@ -8,6 +8,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import ru.yandex.qatools.htmlelements.annotations.Name;
 import ru.yandex.qatools.htmlelements.element.Button;
 import ru.yandex.qatools.htmlelements.element.HtmlElement;
 import ru.yandex.qatools.htmlelements.element.TextInput;
@@ -25,6 +26,10 @@ public class AbstractPage extends HtmlElement {
     @FindBy(xpath = "//input[@placeholder='Название или ИНН получателя платежа']")
     public TextInput searchInput;
 
+    @Name("footer-menu")
+    @FindBy(xpath = ".//*[@data-qa-file='Footer']//*[text() ='Платежи']")
+    private Button paymentsButton;
+
     public void clickOn(String str) {
         WebDriver initialDriver = WebDriverSingleton.getDriver();
         Actions action = new Actions(initialDriver);
@@ -36,8 +41,13 @@ public class AbstractPage extends HtmlElement {
 
     void clickOnButton(Button button) {
         WebDriver initialDriver = WebDriverSingleton.getDriver();
-        WebDriverWait wait = new WebDriverWait(initialDriver,30);
+        WebDriverWait wait = new WebDriverWait(initialDriver, 30);
         wait.until(elementToBeClickable(button)).click();
+    }
+
+    public PaymentsPage clickOnPaymentsButton() {
+        paymentsButton.click();
+        return new PaymentsPage();
     }
 
     AbstractPage() {

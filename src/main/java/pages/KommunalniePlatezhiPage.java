@@ -12,6 +12,8 @@ public class KommunalniePlatezhiPage extends AbstractPage {
 
     WebDriverWait wait = new WebDriverWait(WebDriverSingleton.getInstance(), 30);
 
+    private static String SAVEDVALUE;
+
     public String getValueFromStorage() {
         return getSAVEDVALUE();
     }
@@ -39,13 +41,6 @@ public class KommunalniePlatezhiPage extends AbstractPage {
     @FindBy(xpath = "//DIV[@class='Text__text_1yBRv Text__text_size_21_3OIp0 Text__text_sizeDesktop_40_O_1Sl Text__text_align_center_1gFso Text__text_alignDesktop_left_1xu1i'][text()='Узнайте задолженность по ЖКУ в Москве']")
     public TextBlock kommunalniePlatezhiPageTitle;
 
-    @FindBy(xpath = "//*[@data-qa-file=\"UIScrollList\"]")
-    public Button scrolllistUIScrollList;
-
-    @FindBy(xpath = "(//*[@data-qa-file='SearchSuggested']//*[@data-qa-node='Tag'])[1]")
-    public TextInput firstSearchSuggestedelEment;
-
-    private static String SAVEDVALUE;
 
     @FindBy(xpath = "(//*[@class='ui-link__text'][@data-qa-file='UILink'])[3]")
     public Button firstElementUILayoutSection;
@@ -53,9 +48,23 @@ public class KommunalniePlatezhiPage extends AbstractPage {
     @FindBy(xpath = "(//*[@data-qa-file='UIScrollList']//span)[3]//span")
     public Button firstElementUIScrollList;
 
+    @FindBy(xpath = "//*[@data-qa-file=\"UIScrollList\"]")
+    public Button scrolllistUIScrollList;
+
+    @FindBy(xpath = "(//*[@data-qa-file='SearchSuggested']//*[@data-qa-node='Tag'])[1]")
+    public TextInput firstSearchSuggestedelEment;
+
     public void verifyPageTitleIs(String s) {
         wait.until(visibilityOf(kommunalniePlatezhiPageTitle));
         Assert.assertEquals("Заголовок страницы не корректен", kommunalniePlatezhiPageTitle.getText(), s);
+    }
+
+    public ZhkuMoskvaPage selectOnFirstElementAndStorItTextValue() {
+        wait.until(visibilityOfAllElements(scrolllistUIScrollList));
+        setSAVEDVALUE(firstElementUILayoutSection.getText());
+//        System.out.println("было сохранено значение первого элемента " + getSAVEDVALUE());
+        firstElementUIScrollList.click();
+        return new ZhkuMoskvaPage();
     }
 
     public KommunalniePlatezhiPage veryfythatregionisCorrect(String name) {
@@ -76,13 +85,6 @@ public class KommunalniePlatezhiPage extends AbstractPage {
         return new KommunalniePlatezhiPage();
     }
 
-    public void selectOnFirstElementAndStorItTextValue() {
-        wait.until(visibilityOfAllElements(scrolllistUIScrollList));
-        setSAVEDVALUE(firstElementUILayoutSection.getText());
-//        System.out.println("было сохранено значение первого элемента " + getSAVEDVALUE());
-        firstElementUIScrollList.click();
-    }
-
     public void insertSavedValueInSearchInput() {
         String string = getSAVEDVALUE();
         wait.until(visibilityOf(searchInput));
@@ -90,4 +92,11 @@ public class KommunalniePlatezhiPage extends AbstractPage {
         searchInput.sendKeys(string);
         firstSearchSuggestedelEment.click();
     }
+
+    public KommunalniePlatezhiPage maintTestVerification() {
+        Assert.assertNotEquals(wait.until(visibilityOf(firstElementUILayoutSection))
+                .getText(), getValueFromStorage(), "Ошибка");
+        return this;
+    }
+
 }
