@@ -10,8 +10,8 @@ Test created using maven + selenium webdriver + java 8 + junit + Html Elements +
 
 ### Prerequisites
 
-webdriver скачивать не требуется, реализована автоматическая подкачка при первом запуске
-
+Webdriver скачивать не требуется, реализована автоматическая подкачка при первом запуске.
+Установленный Chrome browser.
 ## Running the tests
 запуск из класса ChromeTest.java тестового класса
 ```
