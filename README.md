@@ -1,4 +1,4 @@
-![Tinkoff-Bank logo](https://github.com/Tkhorik/framework-for-testing/blob/master/tinkoff.png=200x)
+![Tinkoff-Bank logo|10x10](./tinkoff.png)
 # [Tinkoff Bank] Тестовое задание
 
 Test created using maven + selenium webdriver + java 8 + junit + Html Elements + page objects pattern + Fluent Page Objects Usage in Tests
