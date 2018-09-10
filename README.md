@@ -1,4 +1,4 @@
-![Tinkoff-Bank logo](https://github.com/Tkhorik/framework-for-testing/blob/master/tinkoff.png | width=48)
+![Tinkoff-Bank logo](https://github.com/Tkhorik/framework-for-testing/blob/master/tinkoff.png)<!-- .element height="50%" width="50%" -->
 # [Tinkoff Bank] Тестовое задание
 
 Test created using maven + selenium webdriver + java 8 + junit + Html Elements + page objects pattern + Fluent Page Objects Usage in Tests
